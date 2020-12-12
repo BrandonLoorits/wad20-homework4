@@ -107,7 +107,7 @@ const PostModel = {
     like(userId, postId, callback) {
         let statement = 'INSERT INTO post_like (user_id, post_id) VALUES (?, ?);';
 
-        return   query(statement, [userId, postId], callback);
+        return query(statement, [userId, postId], callback);
     },
 
     unlike(userId, postId, callback) {

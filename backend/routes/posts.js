@@ -17,7 +17,6 @@ router.get('/', authorize, (request, response) => {
             return;
         }
         response.json([])
-        
 
     })
 
@@ -31,17 +30,6 @@ router.post('/', authorize,  (request, response) => {
 
 
 router.put('/:postId/likes', authorize, (request, response) => {
-
-       
-            PostModel.getByIds(request.currentUser.id,request.param.postId, (posts) => {
-                response.status(201)
-            });
-            return;
-        }
-    
-        
-
-    })
 
     // Endpoint for current user to like a post
 });
