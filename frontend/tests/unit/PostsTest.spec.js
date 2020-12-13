@@ -105,7 +105,7 @@ describe('Posts', () => {
     });
 
     it('tests that exactly as many posts are rendered as contained in testData variable', function () {
-        let postsLength = wrapper.findAll( ".post").length;
+        let postsLength = wrapper.findAll(".post").length;
         expect(postsLength).toBe(testData.length);
     });
 
