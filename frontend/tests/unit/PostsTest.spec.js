@@ -103,4 +103,21 @@ describe('Posts', () => {
     it('1 == 1', function () {
         expect(true).toBe(true)
     });
+
+    it('tests that exactly as many posts are rendered as contained in testData variable', function () {
+        let postsLength = wrapper.findAll( ".post").length;
+        expect(postsLength).toBe(testData.length);
+    });
+
+    it('tests that if post has media property, image or video tags are rendered depending on media.type property, or if media property is absent nothing is rendered.', function () {
+        let posts = wrapper.findAll(".post");
+        expect(posts.at(0).get(".post-image").get("img").exists()).toBe(true);
+        expect(posts.at(1).find(".post-image").exists()).toBe(false);
+        expect(posts.at(2).get(".post-image").get("video").exists()).toBe(true);
+    });
+
+    it('tests that post create time is displayed in correct format: Saturday, December 5, 2020 1:53 PM', function () {
+        let postCreateTime = wrapper.findAll(".post").at(0).find(".post-author").findAll("small").at(1).text();
+        expect(postCreateTime).toBe("Saturday, December 5, 2020 1:53 PM");
+    });
 });
