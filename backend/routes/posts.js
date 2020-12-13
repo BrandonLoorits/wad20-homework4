@@ -25,6 +25,28 @@ router.get('/', authorize, (request, response) => {
 router.post('/', authorize,  (request, response) => {
 
     // Endpoint to create a new post
+    let info = request.body
+    info['userId'] = request.currentUser.id
+
+    const fieldMissing = {
+        code: null,
+        message: 'Please provide %s field'
+    };
+
+    for (let field in info) {
+        if (info[field].required === true && !request.body[field]) {
+
+            fieldMissing.code = field;
+            fieldMissing.message = fieldMissing.message.replace('%s', field);
+
+            response.json(fieldMissing, 400);
+            return;
+        }
+    }
+
+    PostModel.create(info, () => {
+        response.status(201).json()
+    });
 
 });
 
